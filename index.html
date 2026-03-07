@@ -1,9 +1,2296 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Rysenn</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#FF6B35" />
+  <meta name="description" content="Rysenn — Rise. Resist. Reign. Your personal streak discipline tracker." />
+  <title>Rysenn — Rise. Resist. Reign.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>" />
+  <style>
+/* =============================================
+   RYSENN — Rise. Resist. Reign.
+   Design: Playful Discipline — Duolingo energy
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;600;700;800&display=swap');
+
+/* CSS Variables */
+:root {
+  --level-color: #FF6B35;
+  --level-bg: #FFF4F0;
+  --level-accent: #FF8C5A;
+
+  --white: #FFFFFF;
+  --off-white: #F8FAFC;
+  --gray-50: #F1F5F9;
+  --gray-100: #E2E8F0;
+  --gray-200: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-700: #334155;
+  --gray-900: #0F172A;
+
+  --success: #10B981;
+  --danger: #EF4444;
+  --warn: #F59E0B;
+
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow: 0 4px 16px rgba(0,0,0,0.1);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
+
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Nunito', sans-serif;
+
+  --nav-height: 72px;
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background-color: var(--level-bg);
+  color: var(--gray-900);
+  min-height: 100vh;
+  transition: background-color 0.6s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* =============================================
+   PAGES
+   ============================================= */
+
+.page {
+  min-height: 100vh;
+  padding: 0 0 calc(var(--nav-height) + 16px);
+  animation: fadeSlideIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =============================================
+   WELCOME PAGE
+   ============================================= */
+
+.welcome-page {
+  padding-bottom: 48px;
+  background: linear-gradient(160deg, var(--level-color) 0%, var(--level-accent) 45%, var(--level-bg) 100%);
+}
+
+.welcome-hero {
+  text-align: center;
+  padding: 60px 24px 32px;
+  color: white;
+}
+
+.welcome-logo {
+  width: 80px;
+  height: 80px;
+  background: rgba(255,255,255,0.2);
+  border: 3px solid rgba(255,255,255,0.6);
+  border-radius: 24px;
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 800;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.welcome-title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.2);
+}
+
+.welcome-tagline {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+.welcome-body {
+  padding: 8px 20px 48px;
+}
+
+.welcome-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+
+.welcome-card h2 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--gray-900);
+}
+
+.welcome-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--gray-700);
+}
+
+.level-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.level-chip {
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.start-btn {
+  width: 100%;
+  margin-top: 8px;
+  font-size: 20px;
+  padding: 20px;
+}
+
+/* =============================================
+   PAGE HEADER
+   ============================================= */
+
+.page-header {
+  padding: 32px 24px 16px;
+  background: var(--level-color);
+  color: white;
+}
+
+.page-header h1 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.page-header p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  margin-top: 4px;
+}
+
+/* =============================================
+   STREAK PAGE
+   ============================================= */
+
+.streak-page {
+  background: var(--level-bg);
+}
+
+.streak-header {
+  background: var(--level-color);
+  color: white;
+  padding: 36px 24px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.streak-header::before {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: -10%;
+  width: 120%;
+  height: 60px;
+  background: var(--level-bg);
+  border-radius: 50%;
+}
+
+.level-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.25);
+  border: 2px solid rgba(255,255,255,0.5);
+  border-radius: var(--radius-full);
+  padding: 6px 18px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.level-title {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.level-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+  margin-top: 8px;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.progress-section {
+  padding: 36px 24px 20px;
+  text-align: center;
+}
+
+.day-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gray-700);
+  margin-bottom: 14px;
+}
+
+.day-current {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--level-color);
+  font-family: var(--font-display);
+}
+
+.progress-track {
+  background: var(--gray-100);
+  border-radius: var(--radius-full);
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--level-color), var(--level-accent));
+  border-radius: var(--radius-full);
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 8px;
+  right: 8px;
+  height: 5px;
+  background: rgba(255,255,255,0.4);
+  border-radius: var(--radius-full);
+}
+
+.progress-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 80%, rgba(255,255,255,0.3));
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.progress-pct {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-400);
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+}
+
+.daily-content {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.quote-card, .verse-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--level-color);
+}
+
+.card-icon {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.quote-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray-700);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.verse-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray-700);
+  font-style: italic;
+}
+
+.verse-ref {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--level-color);
+  margin-top: 8px;
+}
+
+.action-buttons {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-primary {
+  background: var(--level-color);
+  color: white;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 16px 28px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--level-color) 70%, black);
+  letter-spacing: 0.3px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 color-mix(in srgb, var(--level-color) 70%, black);
+}
+
+.btn-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--level-color) 70%, black);
+}
+
+.btn-large {
+  font-size: 18px;
+  padding: 20px 36px;
+}
+
+.btn-secondary {
+  background: var(--gray-100);
+  color: var(--gray-700);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 24px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 3px 0 var(--gray-200);
+}
+
+.btn-secondary:hover {
+  background: var(--gray-200);
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+  font-weight: 800;
+  font-size: 15px;
+  padding: 14px 24px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 0 #B91C1C;
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #B91C1C;
+}
+
+.btn-icon {
+  background: var(--gray-100);
+  color: var(--gray-500);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-icon:hover { background: var(--gray-200); }
+.btn-icon.danger { background: #FEE2E2; color: var(--danger); }
+.btn-icon.danger:hover { background: #FECACA; }
+
+.btn-urge {
+  background: linear-gradient(135deg, #F97316, #EF4444);
+  color: white;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 18px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 0 #C2410C;
+  text-align: center;
+}
+
+.btn-urge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #C2410C;
+}
+
+.btn-trigger {
+  background: linear-gradient(135deg, #7C3AED, #6366F1);
+  color: white;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 18px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 0 #5B21B6;
+}
+
+.btn-trigger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #5B21B6;
+}
+
+.btn-relapse {
+  background: white;
+  color: var(--danger);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  border: 2px solid #FECACA;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-relapse:hover {
+  background: #FEF2F2;
+  border-color: var(--danger);
+}
+
+.btn-calm {
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: white;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 18px 32px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 0 #047857;
+  margin: 0 24px;
+  width: calc(100% - 48px);
+}
+
+.btn-calm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #047857;
+}
+
+/* =============================================
+   NAVIGATION BAR
+   ============================================= */
+
+.nav-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: var(--nav-height);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 8px;
+  box-shadow: 0 -2px 20px rgba(0,0,0,0.1);
+  border-top: 1px solid var(--gray-100);
+  z-index: 100;
+}
+
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--gray-400);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: all 0.18s ease;
+  flex: 1;
+}
+
+.nav-btn:hover { background: var(--gray-50); color: var(--gray-700); }
+
+.nav-active {
+  color: var(--level-color) !important;
+  background: color-mix(in srgb, var(--level-color) 12%, white) !important;
+}
+
+.nav-icon { font-size: 22px; }
+.nav-label { font-size: 11px; }
+
+/* =============================================
+   URGE PAGE
+   ============================================= */
+
+.urge-page {
+  background: linear-gradient(160deg, #1E3A5F 0%, #0F2440 100%);
+  color: white;
+  padding-bottom: 32px;
+}
+
+.urge-header {
+  padding: 20px 24px 16px;
+  text-align: center;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  border-radius: var(--radius-full);
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  backdrop-filter: blur(4px);
+}
+
+.back-btn:hover { background: rgba(255,255,255,0.25); }
+
+.urge-header h1 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  margin-top: 40px;
+}
+
+.urge-subtitle {
+  color: rgba(255,255,255,0.7);
+  font-size: 15px;
+  margin-top: 6px;
+}
+
+.breathing-circle-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 20px 24px;
+}
+
+.breathing-circle {
+  width: 160px;
+  height: 160px;
+  border: 4px solid #60A5FA;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s ease;
+  animation: breathPulse 4s ease-in-out infinite;
+}
+
+@keyframes breathPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.3); }
+  50% { transform: scale(1.08); box-shadow: 0 0 0 20px rgba(96, 165, 250, 0); }
+}
+
+.breath-expand {
+  animation: breathExpand 4s ease-in-out infinite !important;
+}
+
+@keyframes breathExpand {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+.breath-phase {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 4px;
+}
+
+.breath-timer {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 800;
+  color: white;
+}
+
+.urge-countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px 16px;
+}
+
+.countdown-ring {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.countdown-svg {
+  width: 90px;
+  height: 90px;
+  transform: rotate(-90deg);
+}
+
+.ring-bg {
+  fill: none;
+  stroke: rgba(255,255,255,0.1);
+  stroke-width: 8;
+}
+
+.ring-fill {
+  fill: none;
+  stroke: #34D399;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 276.46;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.countdown-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+}
+
+.countdown-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.urge-message {
+  background: rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 18px 24px;
+  margin: 0 24px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+  font-style: italic;
+  backdrop-filter: blur(4px);
+}
+
+.urge-goals {
+  margin: 0 24px 20px;
+}
+
+.urge-goals h3 {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 12px;
+}
+
+.urge-goal-item {
+  background: rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+  backdrop-filter: blur(4px);
+}
+
+/* =============================================
+   CARDS & FORMS
+   ============================================= */
+
+.card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  margin: 0 20px 16px;
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--gray-900);
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.form-select, .form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--gray-100);
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gray-900);
+  background: var(--gray-50);
+  transition: border-color 0.2s;
+  appearance: none;
+}
+
+.form-select:focus, .form-input:focus {
+  border-color: var(--level-color);
+  outline: none;
+  background: white;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.form-row .form-input { flex: 1; }
+.form-row .btn-primary { white-space: nowrap; padding: 13px 20px; font-size: 14px; }
+
+/* =============================================
+   TRIGGERS PAGE
+   ============================================= */
+
+.triggers-page {
+  background: var(--gray-50);
+}
+
+.trigger-form {
+  margin-top: 20px;
+}
+
+.trigger-list h3 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--gray-700);
+  padding: 0 24px 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.trigger-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  margin: 0 20px 8px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  gap: 12px;
+}
+
+.trigger-info {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.trigger-type {
+  background: var(--level-color);
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.trigger-hour {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-500);
+}
+
+.trigger-note {
+  font-size: 13px;
+  color: var(--gray-400);
+  width: 100%;
+  margin-top: 2px;
+}
+
+/* =============================================
+   GOALS PAGE
+   ============================================= */
+
+.goals-page {
+  background: var(--gray-50);
+}
+
+.goal-form {
+  margin-top: 20px;
+}
+
+.goals-list {
+  padding: 0 0 8px;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.goal-num {
+  width: 32px;
+  height: 32px;
+  background: var(--level-color);
+  color: white;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.goal-text {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gray-800);
+  line-height: 1.4;
+}
+
+.goal-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* =============================================
+   ADVICE PAGE
+   ============================================= */
+
+.advice-page {
+  background: var(--gray-50);
+}
+
+.advice-category {
+  padding: 0 20px;
+  margin-bottom: 4px;
+}
+
+.advice-cat-title {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--level-color);
+  padding: 16px 4px 8px;
+}
+
+.advice-card {
+  display: flex;
+  gap: 16px;
+  margin: 0 0 12px !important;
+  align-items: flex-start;
+}
+
+.advice-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.advice-body h4 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 6px;
+}
+
+.advice-body p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray-600);
+}
+
+/* =============================================
+   DASHBOARD PAGE
+   ============================================= */
+
+.dashboard-page {
+  background: var(--gray-50);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 20px 20px 4px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s;
+}
+
+.stat-card:hover { transform: translateY(-2px); }
+
+.stat-card.primary {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, var(--level-color), var(--level-accent));
+  color: white;
+}
+
+.stat-card.primary .stat-val { color: white; }
+.stat-card.primary .stat-label { color: rgba(255,255,255,0.8); }
+.stat-card.clean { border: 2px solid var(--success); }
+.stat-card.warn { border: 2px solid var(--warn); }
+
+.stat-icon { font-size: 28px; margin-bottom: 6px; }
+
+.stat-val {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--gray-900);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gray-400);
+  margin-top: 6px;
+}
+
+.pattern-card {
+  margin-top: 16px;
+}
+
+.pattern-card h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.trigger-bars { display: flex; flex-direction: column; gap: 10px; }
+
+.trigger-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.trigger-bar-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-700);
+  min-width: 100px;
+}
+
+.trigger-bar-track {
+  flex: 1;
+  height: 12px;
+  background: var(--gray-100);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.trigger-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--level-color), var(--level-accent));
+  border-radius: var(--radius-full);
+  width: 0;
+  animation: growBar 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes growBar {
+  from { width: 0 !important; }
+  to { /* width set inline */ }
+}
+
+.trigger-bar-count {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--gray-400);
+  min-width: 28px;
+  text-align: right;
+}
+
+.danger-hour {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.danger-hour:last-child { border-bottom: none; }
+
+.dh-label {
+  font-weight: 700;
+  color: var(--gray-700);
+}
+
+.dh-count {
+  background: #FEF3C7;
+  color: #D97706;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+/* =============================================
+   MODALS
+   ============================================= */
+
+.modal-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: 40px 32px;
+  text-align: center;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.modal-emoji {
+  font-size: 56px;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.modal-content h2 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--gray-900);
+}
+
+.modal-content h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--level-color);
+  margin-bottom: 12px;
+}
+
+.modal-content p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--gray-600);
+  margin-bottom: 12px;
+}
+
+.modal-sub {
+  font-size: 13px !important;
+  color: var(--gray-400) !important;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.modal-actions button { width: 100%; }
+
+/* Level up specific */
+.levelup-modal .modal-content {
+  background: linear-gradient(160deg, var(--level-bg) 0%, white 100%);
+  border: 3px solid var(--level-color);
+}
+
+.levelup-emoji {
+  font-size: 72px;
+  animation: bounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) infinite alternate;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-8px); }
+}
+
+/* Rise modal */
+.rise-modal .modal-content {
+  background: linear-gradient(160deg, #FFF4F0, white);
+  border: 3px solid var(--level-color);
+}
+
+/* =============================================
+   EMPTY STATES
+   ============================================= */
+
+.empty-state {
+  text-align: center;
+  padding: 32px 24px;
+  color: var(--gray-400);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 420px) {
+  .welcome-title { font-size: 40px; }
+  .level-title { font-size: 34px; }
+  .day-current { font-size: 28px; }
+  .stat-val { font-size: 26px; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 3px; }
+
+/* Color-mix fallback for older browsers */
+@supports not (color: color-mix(in srgb, red 50%, blue)) {
+  .btn-primary { box-shadow: 0 4px 0 rgba(0,0,0,0.25); }
+  .btn-primary:hover { box-shadow: 0 6px 0 rgba(0,0,0,0.25); }
+  .btn-primary:active { box-shadow: 0 2px 0 rgba(0,0,0,0.25); }
+  .btn-danger { box-shadow: 0 4px 0 rgba(0,0,0,0.25); }
+}
+
+  </style>
 </head>
 <body>
-    <h1>Welcome to Rysenn</h1>
-    <p>This is the content of rysenn.html.</p>
+  <div id="app"></div>
+  <script>
+// ===== DATA: streakLevels =====
+const STREAK_LEVELS = [
+    {
+        level: 1, days: 3, label: "3 Days", color: "#FF6B35", bg: "#FFF4F0",
+        accent: "#FF8C5A", emoji: "🔥", title: "Spark",
+        description: "Every great journey starts with a single step. You've ignited the spark."
+    },
+    {
+        level: 2, days: 7, label: "7 Days", color: "#2563EB", bg: "#EFF6FF",
+        accent: "#3B82F6", emoji: "💧", title: "Wave",
+        description: "A full week of discipline. The wave is building momentum."
+    },
+    {
+        level: 3, days: 14, label: "14 Days", color: "#7C3AED", bg: "#F5F3FF",
+        accent: "#8B5CF6", emoji: "⚡", title: "Storm",
+        description: "Two weeks strong. You're becoming the storm."
+    },
+    {
+        level: 4, days: 30, label: "30 Days", color: "#059669", bg: "#ECFDF5",
+        accent: "#10B981", emoji: "🌱", title: "Growth",
+        description: "One full month. New neural pathways are forming. You're growing."
+    },
+    {
+        level: 5, days: 60, label: "60 Days", color: "#D97706", bg: "#FFFBEB",
+        accent: "#F59E0B", emoji: "✨", title: "Gold",
+        description: "Two months of gold-standard discipline. Extraordinary."
+    },
+    {
+        level: 6, days: 90, label: "90 Days", color: "#9F1239", bg: "#FFF1F2",
+        accent: "#E11D48", emoji: "🦅", title: "Phoenix",
+        description: "Ninety days. You've risen from the ashes. You are the phoenix."
+    },
+    {
+        level: 7, days: 180, label: "180 Days", color: "#475569", bg: "#F8FAFC",
+        accent: "#64748B", emoji: "🌙", title: "Silver",
+        description: "Half a year. Silver-strong, unshakeable. A new person entirely."
+    },
+    {
+        level: 8, days: 365, label: "365 Days", color: "#1a1a2e", bg: "#F1F5F9",
+        accent: "#334155", emoji: "👑", title: "Legend",
+        description: "One full year. You have conquered. You are a legend."
+    }
+];
+
+
+// ===== DATA: quotes =====
+const QUOTES = [
+    "Discipline is the bridge between goals and accomplishment. — Jim Rohn",
+    "You don't have to be great to start, but you have to start to be great. — Zig Ziglar",
+    "The secret of getting ahead is getting started. — Mark Twain",
+    "Success is nothing more than a few simple disciplines, practiced every day. — Jim Rohn",
+    "We are what we repeatedly do. Excellence, then, is not an act, but a habit. — Aristotle",
+    "The only way out is through. — Robert Frost",
+    "Hard choices, easy life. Easy choices, hard life. — Jerzy Gregorek",
+    "You will never always be motivated. You have to learn to be disciplined.",
+    "Every moment of resistance to temptation is a victory. — Frederick William Faber",
+    "It does not matter how slowly you go as long as you do not stop. — Confucius",
+    "Strength does not come from physical capacity. It comes from an indomitable will. — Gandhi",
+    "Pain is temporary. Quitting lasts forever. — Lance Armstrong",
+    "The man who moves a mountain begins by carrying away small stones. — Confucius",
+    "What you resist, persists. What you embrace, you replace.",
+    "Your future self is watching you right now through your memories.",
+    "Every day you fight and win is a day that shapes who you become.",
+    "The urge will pass. The decision to stay strong lasts forever.",
+    "You are not your impulses. You are the person who chooses.",
+    "One day at a time. One moment at a time. One breath at a time.",
+    "The strongest people are not those who show strength in front of us, but those who win battles we know nothing about.",
+    "Temptation reveals character only if you let it win. Resistance builds it.",
+    "Today's struggle is tomorrow's strength.",
+    "Your identity is shaped by what you repeatedly refuse, not just what you pursue.",
+    "Every 'no' to a trigger is a 'yes' to your future.",
+    "The chains of habit are too light to be felt until they are too heavy to be broken. — Warren Buffett",
+    "Winning the war within is the greatest victory of all.",
+    "You've survived every bad day so far. That's 100% success.",
+    "Be stronger than your strongest excuse.",
+    "A year from now you will wish you had started today.",
+    "Progress, not perfection."
+];
+function getDailyQuote() {
+    const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+    return QUOTES[dayOfYear % QUOTES.length];
+}
+
+
+// ===== DATA: verses =====
+const VERSES = [
+    { reference: "1 Corinthians 10:13", text: "No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear." },
+    { reference: "Philippians 4:13", text: "I can do all things through Christ who strengthens me." },
+    { reference: "Romans 8:37", text: "No, in all these things we are more than conquerors through him who loved us." },
+    { reference: "James 4:7", text: "Submit yourselves, then, to God. Resist the devil, and he will flee from you." },
+    { reference: "Galatians 5:16", text: "Walk by the Spirit, and you will not gratify the desires of the flesh." },
+    { reference: "Psalm 119:9", text: "How can a young person stay on the path of purity? By living according to your word." },
+    { reference: "2 Timothy 1:7", text: "For God has not given us a spirit of fear, but of power, love, and a sound mind." },
+    { reference: "Isaiah 41:10", text: "Do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you." },
+    { reference: "Romans 12:2", text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind." },
+    { reference: "1 Peter 5:8", text: "Be sober-minded; be watchful. Your adversary the devil prowls around like a roaring lion, seeking someone to devour." },
+    { reference: "Psalm 46:1", text: "God is our refuge and strength, an ever-present help in trouble." },
+    { reference: "Proverbs 4:23", text: "Above all else, guard your heart, for everything you do flows from it." },
+    { reference: "2 Corinthians 12:9", text: "My grace is sufficient for you, for my power is made perfect in weakness." },
+    { reference: "Hebrews 4:16", text: "Let us then approach God's throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need." },
+    { reference: "1 John 4:4", text: "You, dear children, are from God and have overcome them, because the one who is in you is greater than the one who is in the world." },
+    { reference: "Lamentations 3:22-23", text: "Because of the Lord's great love we are not consumed, for his compassions never fail. They are new every morning." },
+    { reference: "Psalm 34:18", text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit." },
+    { reference: "Matthew 26:41", text: "Watch and pray so that you will not fall into temptation. The spirit is willing, but the flesh is weak." },
+    { reference: "Romans 6:14", text: "For sin shall no longer be your master, because you are not under the law, but under grace." },
+    { reference: "Ephesians 6:10", text: "Finally, be strong in the Lord and in his mighty power." }
+];
+function getDailyVerse() {
+    const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+    return VERSES[dayOfYear % VERSES.length];
+}
+
+
+// ===== DATA: advice =====
+const ADVICE = [
+    {
+        category: "Daily Routine",
+        icon: "🌅",
+        title: "Win the Morning",
+        content: "The first 30 minutes of your day set the tone. Wake up, drink water, pray or meditate, and do light movement before touching your phone. A morning routine creates a psychological barrier against impulsive behavior."
+    },
+    {
+        category: "Daily Routine",
+        icon: "📵",
+        title: "Phone-Free Zones",
+        content: "Designate your bedroom and bathroom as phone-free zones. Most relapses happen in these locations. Remove the device from these spaces entirely. What you cannot access, you cannot consume."
+    },
+    {
+        category: "Daily Routine",
+        icon: "🌙",
+        title: "Evening Wind-Down",
+        content: "Create a 1-hour screen-free wind-down ritual before sleep. Read, journal, or pray. Fatigue and late-night solitude are among the highest-risk triggers. A strong evening routine dramatically reduces risk."
+    },
+    {
+        category: "Breaking Urges",
+        icon: "🌬️",
+        title: "The 4-7-8 Breath",
+        content: "When an urge hits: inhale for 4 counts, hold for 7, exhale slowly for 8. Repeat 4 times. This activates the parasympathetic nervous system and interrupts the urge cycle at a physiological level. The urge will pass within 10–15 minutes."
+    },
+    {
+        category: "Breaking Urges",
+        icon: "🏃",
+        title: "Physical Interrupt",
+        content: "Drop and do 20 push-ups or go for a brisk 10-minute walk immediately. Physical exertion redirects dopamine-seeking behavior. The urge cannot survive vigorous exercise. Movement is medicine."
+    },
+    {
+        category: "Breaking Urges",
+        icon: "📞",
+        title: "Call Someone",
+        content: "Keep one person's number you can call in moments of weakness. The act of connection — even briefly — breaks the isolated mental state where urges thrive. Accountability is armor."
+    },
+    {
+        category: "Breaking Urges",
+        icon: "❄️",
+        title: "Cold Water",
+        content: "Splash cold water on your face or take a cold shower. Cold exposure immediately disrupts the mental state associated with urges. It shocks your system back to clarity."
+    },
+    {
+        category: "Healthy Habits",
+        icon: "💪",
+        title: "Channel Energy Into Fitness",
+        content: "Build a consistent exercise habit. Working out 3–5x per week dramatically reduces urge frequency by regulating dopamine naturally. Your body needs positive physical challenges to stay balanced."
+    },
+    {
+        category: "Healthy Habits",
+        icon: "📖",
+        title: "Read Every Day",
+        content: "Replace consumption habits with reading. Even 20 pages a day builds mental discipline, reduces screen addiction, and fills the mind with healthy content. Your mind will become what you feed it."
+    },
+    {
+        category: "Healthy Habits",
+        icon: "🍎",
+        title: "Nutrition & Sleep",
+        content: "Poor sleep and sugar crashes increase vulnerability to urges. Prioritize 7–8 hours of sleep and reduce processed sugar. A healthy body creates a resilient mind."
+    },
+    {
+        category: "Productivity",
+        icon: "🎯",
+        title: "Purposeful Work",
+        content: "Idle time is the enemy. Fill your calendar with meaningful work, creative projects, and service to others. A person fully invested in their purpose rarely has space for destructive habits."
+    },
+    {
+        category: "Productivity",
+        icon: "⏰",
+        title: "Time Blocking",
+        content: "Schedule your entire day in advance. Unstructured hours are when urges attack. When every hour has a purpose, there is no mental vacancy for temptation to occupy."
+    },
+    {
+        category: "Faith & Encouragement",
+        icon: "🙏",
+        title: "Daily Prayer",
+        content: "Begin each day with prayer. Ask for strength not just to survive, but to thrive. Scripture, silence, and surrender to God are among the most powerful forces against addiction. You are not fighting alone."
+    },
+    {
+        category: "Faith & Encouragement",
+        icon: "✝️",
+        title: "Community & Accountability",
+        content: "Find a faith community, accountability partner, or support group. Healing happens in community. Isolation is where addiction grows. Bring your struggle into the light — it loses power there."
+    },
+    {
+        category: "Faith & Encouragement",
+        icon: "💬",
+        title: "Speak Identity",
+        content: "Declare who you are every morning: 'I am disciplined. I am free. I am not a slave to my impulses.' Words shape identity. Identity shapes behavior. Speak your future into existence."
+    },
+    {
+        category: "Faith & Encouragement",
+        icon: "🌱",
+        title: "Grace After Relapse",
+        content: "If you relapse, you are not destroyed. Grace is the foundation of real change. Do not spiral into shame — shame feeds the cycle. Rise, confess, and begin again. Every morning is new mercy."
+    }
+];
+
+
+// ===== UTILS: storage =====
+const STORAGE_KEY = "rysenn_data";
+const DEFAULT_DATA = {
+    currentLevel: 1,
+    startDate: new Date().toISOString().split("T")[0],
+    longestStreak: 0,
+    relapseCount: 0,
+    totalCleanDays: 0,
+    goals: [],
+    triggers: [],
+    hasOnboarded: false
+};
+function loadData() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw)
+            return { ...DEFAULT_DATA };
+        return { ...DEFAULT_DATA, ...JSON.parse(raw) };
+    }
+    catch {
+        return { ...DEFAULT_DATA };
+    }
+}
+function saveData(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+function clearData() {
+    localStorage.removeItem(STORAGE_KEY);
+}
+
+
+// ===== UTILS: dateUtils =====
+function getTodayString() {
+    return new Date().toISOString().split("T")[0];
+}
+function getDaysSince(dateStr) {
+    const start = new Date(dateStr);
+    const now = new Date();
+    start.setHours(0, 0, 0, 0);
+    now.setHours(0, 0, 0, 0);
+    return Math.floor((now.getTime() - start.getTime()) / 86400000) + 1;
+}
+function formatDate(dateStr) {
+    return new Date(dateStr).toLocaleDateString("en-US", {
+        month: "long", day: "numeric", year: "numeric"
+    });
+}
+function getCurrentHour() {
+    return new Date().getHours();
+}
+function formatHour(hour) {
+    if (hour === 0)
+        return "12:00 AM";
+    if (hour < 12)
+        return `${hour}:00 AM`;
+    if (hour === 12)
+        return "12:00 PM";
+    return `${hour - 12}:00 PM`;
+}
+
+
+// ===== ENGINE: streakEngine =====
+function getCurrentLevel(data) {
+    return STREAK_LEVELS[Math.min(data.currentLevel - 1, STREAK_LEVELS.length - 1)];
+}
+function getCurrentDay(data) {
+    return getDaysSince(data.startDate);
+}
+function getProgress(data) {
+    const level = getCurrentLevel(data);
+    const current = Math.min(getCurrentDay(data), level.days);
+    const percent = Math.round((current / level.days) * 100);
+    return { current, target: level.days, percent };
+}
+function checkLevelUp(data) {
+    const day = getCurrentDay(data);
+    const level = getCurrentLevel(data);
+    if (day > level.days && data.currentLevel < STREAK_LEVELS.length) {
+        const newDay = day - level.days;
+        const newData = {
+            ...data,
+            currentLevel: data.currentLevel + 1,
+            startDate: new Date(Date.now() - (newDay - 1) * 86400000).toISOString().split("T")[0],
+            totalCleanDays: data.totalCleanDays + level.days
+        };
+        saveData(newData);
+        return { leveled: true, data: newData };
+    }
+    return { leveled: false, data };
+}
+function handleRelapse() {
+    const data = loadData();
+    const currentDay = getCurrentDay(data);
+    const level = getCurrentLevel(data);
+    const streakDays = (data.currentLevel - 1 > 0
+        ? STREAK_LEVELS.slice(0, data.currentLevel - 1).reduce((a, l) => a + l.days, 0)
+        : 0) + currentDay;
+    const newData = {
+        ...data,
+        currentLevel: 1,
+        startDate: getTodayString(),
+        relapseCount: data.relapseCount + 1,
+        longestStreak: Math.max(data.longestStreak, streakDays),
+        totalCleanDays: data.totalCleanDays + currentDay
+    };
+    saveData(newData);
+    return newData;
+}
+function getTotalCleanDays(data) {
+    const completedLevelDays = STREAK_LEVELS.slice(0, data.currentLevel - 1).reduce((a, l) => a + l.days, 0);
+    return completedLevelDays + getCurrentDay(data);
+}
+
+
+// ===== ENGINE: triggerEngine =====
+const TRIGGER_TYPES = [
+    "Stress", "Loneliness", "Boredom", "Late Night Phone",
+    "Social Media", "Music", "Random Urge", "Fatigue",
+    "Anxiety", "Anger", "Celebration", "Other"
+];
+function addTrigger(data, type, hour, note) {
+    const trigger = {
+        id: Date.now().toString(),
+        type,
+        hour,
+        note,
+        date: new Date().toISOString()
+    };
+    const newData = { ...data, triggers: [...data.triggers, trigger] };
+    saveData(newData);
+    return newData;
+}
+function deleteTrigger(data, id) {
+    const newData = { ...data, triggers: data.triggers.filter(t => t.id !== id) };
+    saveData(newData);
+    return newData;
+}
+function getMostCommonTriggers(triggers) {
+    const counts = {};
+    triggers.forEach(t => { counts[t.type] = (counts[t.type] || 0) + 1; });
+    return Object.entries(counts)
+        .map(([type, count]) => ({ type, count }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 5);
+}
+function getMostDangerousHours(triggers) {
+    const counts = {};
+    triggers.forEach(t => { counts[t.hour] = (counts[t.hour] || 0) + 1; });
+    return Object.entries(counts)
+        .map(([hour, count]) => ({ hour: Number(hour), count }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 3);
+}
+
+
+// ===== ENGINE: goalEngine =====
+function addGoal(data, goal) {
+    if (!goal.trim())
+        return data;
+    const newData = { ...data, goals: [...data.goals, goal.trim()] };
+    saveData(newData);
+    return newData;
+}
+function editGoal(data, index, newText) {
+    const goals = [...data.goals];
+    goals[index] = newText.trim();
+    const newData = { ...data, goals };
+    saveData(newData);
+    return newData;
+}
+function deleteGoal(data, index) {
+    const goals = data.goals.filter((_, i) => i !== index);
+    const newData = { ...data, goals };
+    saveData(newData);
+    return newData;
+}
+
+
+// ===== ENGINE: urgeEngine =====
+const BREATHING_PHASES = [
+    { name: "Breathe In", duration: 4, color: "#60A5FA" },
+    { name: "Hold", duration: 7, color: "#A78BFA" },
+    { name: "Breathe Out", duration: 8, color: "#34D399" }
+];
+const URGE_MESSAGES = [
+    "This feeling is temporary. It will pass in minutes.",
+    "You are not your urges. You are the person who chooses.",
+    "Every breath is a victory. Keep going.",
+    "The urge is loudest right before it disappears.",
+    "You've beaten this before. You can do it again.",
+    "Breathe. Feel it. Let it pass. You are stronger.",
+    "This is the moment your character is built.",
+    "Stay. Breathe. Win."
+];
+function getRandomUrgeMessage() {
+    return URGE_MESSAGES[Math.floor(Math.random() * URGE_MESSAGES.length)];
+}
+
+
+// ===== ENGINE: dashboardEngine =====
+function buildDashboard(data) {
+    const level = getCurrentLevel(data);
+    return {
+        currentLevelLabel: level.title,
+        currentLevelEmoji: level.emoji,
+        currentDay: getCurrentDay(data),
+        longestStreak: Math.max(data.longestStreak, getTotalCleanDays(data)),
+        relapseCount: data.relapseCount,
+        totalCleanDays: getTotalCleanDays(data),
+        topTriggers: getMostCommonTriggers(data.triggers),
+        dangerousHours: getMostDangerousHours(data.triggers).map(h => ({
+            label: formatHour(h.hour),
+            count: h.count
+        }))
+    };
+}
+
+
+// ===== APP =====
+let userData = loadData();
+let currentPage = userData.hasOnboarded ? "streak" : "welcome";
+let breathingInterval = null;
+let urgeCountdown = null;
+function applyTheme() {
+    const level = getCurrentLevel(userData);
+    document.documentElement.style.setProperty("--level-color", level.color);
+    document.documentElement.style.setProperty("--level-bg", level.bg);
+    document.documentElement.style.setProperty("--level-accent", level.accent);
+    document.body.setAttribute("data-level", String(userData.currentLevel));
+}
+function navigate(page) {
+    clearTimers();
+    currentPage = page;
+    render();
+}
+function clearTimers() {
+    if (breathingInterval) {
+        clearInterval(breathingInterval);
+        breathingInterval = null;
+    }
+    if (urgeCountdown) {
+        clearInterval(urgeCountdown);
+        urgeCountdown = null;
+    }
+}
+function el(id) {
+    return document.getElementById(id);
+}
+function render() {
+    const app = el("app");
+    applyTheme();
+    const { leveled, data } = checkLevelUp(userData);
+    if (leveled) {
+        userData = data;
+        showLevelUpCelebration();
+        return;
+    }
+    switch (currentPage) {
+        case "welcome":
+            renderWelcome(app);
+            break;
+        case "streak":
+            renderStreak(app);
+            break;
+        case "urge":
+            renderUrge(app);
+            break;
+        case "triggers":
+            renderTriggers(app);
+            break;
+        case "goals":
+            renderGoals(app);
+            break;
+        case "advice":
+            renderAdvice(app);
+            break;
+        case "dashboard":
+            renderDashboard(app);
+            break;
+    }
+}
+function navBar(active) {
+    const items = [
+        { page: "streak", icon: "🔥", label: "Streak" },
+        { page: "goals", icon: "🎯", label: "Goals" },
+        { page: "triggers", icon: "⚡", label: "Triggers" },
+        { page: "advice", icon: "💡", label: "Advice" },
+        { page: "dashboard", icon: "📊", label: "Stats" },
+    ];
+    return `<nav class="nav-bar">
+    ${items.map(i => `
+      <button class="nav-btn ${i.page === active ? "nav-active" : ""}" data-nav="${i.page}">
+        <span class="nav-icon">${i.icon}</span>
+        <span class="nav-label">${i.label}</span>
+      </button>
+    `).join("")}
+  </nav>`;
+}
+function renderWelcome(app) {
+    app.innerHTML = `
+    <div class="page welcome-page">
+      <div class="welcome-hero">
+        <div class="welcome-logo">R</div>
+        <h1 class="welcome-title">Rysenn</h1>
+        <p class="welcome-tagline">Rise. Resist. Reign.</p>
+      </div>
+      <div class="welcome-body">
+        <div class="welcome-card">
+          <h2>What is Rysenn?</h2>
+          <p>Rysenn is your personal discipline companion — a streak tracker built not just to count days, but to help you <strong>become</strong> the person you want to be.</p>
+        </div>
+        <div class="welcome-card">
+          <h2>How It Works</h2>
+          <p>Instead of one long endless streak, you progress through <strong>8 Levels</strong> — each one a new milestone, a new identity, a new victory.</p>
+          <div class="level-preview">
+            <span class="level-chip" style="background:#FF6B35">🔥 3 Days</span>
+            <span class="level-chip" style="background:#2563EB">💧 7 Days</span>
+            <span class="level-chip" style="background:#7C3AED">⚡ 14 Days</span>
+            <span class="level-chip" style="background:#059669">🌱 30 Days</span>
+            <span class="level-chip" style="background:#D97706">✨ 60 Days</span>
+            <span class="level-chip" style="background:#9F1239">🦅 90 Days</span>
+            <span class="level-chip" style="background:#475569">🌙 180 Days</span>
+            <span class="level-chip" style="background:#1a1a2e">👑 365 Days</span>
+          </div>
+        </div>
+        <div class="welcome-card">
+          <h2>Your Journey</h2>
+          <p>Every day you stay clean, you grow stronger. Log your triggers. Guard your goals. Breathe through the urges. <strong>One day at a time, you rise.</strong></p>
+        </div>
+        <button class="btn-primary btn-large start-btn" id="startBtn">
+          Start My Journey →
+        </button>
+      </div>
+    </div>
+  `;
+    el("startBtn").addEventListener("click", () => {
+        userData = { ...userData, hasOnboarded: true, startDate: getTodayString() };
+        saveData(userData);
+        navigate("streak");
+    });
+}
+function renderStreak(app) {
+    const level = getCurrentLevel(userData);
+    const day = getCurrentDay(userData);
+    const { current, target, percent } = getProgress(userData);
+    const quote = getDailyQuote();
+    const verse = getDailyVerse();
+    app.innerHTML = `
+    <div class="page streak-page">
+      <div class="streak-header">
+        <div class="level-badge">${level.emoji} Level ${userData.currentLevel}</div>
+        <h1 class="level-title">${level.title}</h1>
+        <p class="level-desc">${level.description}</p>
+      </div>
+
+      <div class="progress-section">
+        <div class="day-label">Day <span class="day-current">${Math.min(current, target)}</span> / ${target}</div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+          <div class="progress-glow"></div>
+        </div>
+        <div class="progress-pct">${percent}% complete</div>
+      </div>
+
+      <div class="daily-content">
+        <div class="quote-card">
+          <div class="card-icon">💬</div>
+          <p class="quote-text">${quote}</p>
+        </div>
+        <div class="verse-card">
+          <div class="card-icon">📖</div>
+          <p class="verse-text">"${verse.text}"</p>
+          <p class="verse-ref">— ${verse.reference}</p>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn-urge" id="urgeBtn">😰 I Feel an Urge</button>
+        <button class="btn-trigger" id="triggerBtn">⚡ Log Trigger</button>
+        <button class="btn-relapse" id="relapseBtn">💔 Relapse</button>
+      </div>
+
+      ${navBar("streak")}
+    </div>
+  `;
+    // Animate progress bar
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            const fill = el("progressFill");
+            if (fill)
+                fill.style.width = percent + "%";
+        }, 100);
+    });
+    el("urgeBtn").addEventListener("click", () => navigate("urge"));
+    el("triggerBtn").addEventListener("click", () => navigate("triggers"));
+    el("relapseBtn").addEventListener("click", confirmRelapse);
+    attachNavListeners();
+}
+function confirmRelapse() {
+    const app = el("app");
+    app.innerHTML = `
+    <div class="page modal-page relapse-modal">
+      <div class="modal-content">
+        <div class="modal-emoji">💔</div>
+        <h2>Are You Sure?</h2>
+        <p>Logging a relapse will reset your streak to Day 1. Your progress and history are saved.</p>
+        <p class="modal-sub">This is not the end. Every legend has fallen. What matters is you rise again.</p>
+        <div class="modal-actions">
+          <button class="btn-danger" id="confirmRelapse">Yes, I Relapsed</button>
+          <button class="btn-secondary" id="cancelRelapse">No, I'm Still Fighting</button>
+        </div>
+      </div>
+    </div>
+  `;
+    el("confirmRelapse").addEventListener("click", () => {
+        userData = handleRelapse();
+        showRelapseScreen();
+    });
+    el("cancelRelapse").addEventListener("click", () => navigate("streak"));
+}
+function showRelapseScreen() {
+    const app = el("app");
+    applyTheme();
+    app.innerHTML = `
+    <div class="page modal-page rise-modal">
+      <div class="modal-content">
+        <div class="modal-emoji">🔥</div>
+        <h2>You Rise Again</h2>
+        <p>Every master has failed more times than the beginner has even tried. You are not broken — you are being built.</p>
+        <p class="modal-sub">Your new streak starts <strong>today.</strong> The journey continues.</p>
+        <button class="btn-primary btn-large" id="riseBtn">I Will Rise 🔥</button>
+      </div>
+    </div>
+  `;
+    el("riseBtn").addEventListener("click", () => navigate("streak"));
+}
+function showLevelUpCelebration() {
+    const app = el("app");
+    const level = getCurrentLevel(userData);
+    applyTheme();
+    app.innerHTML = `
+    <div class="page modal-page levelup-modal">
+      <div class="confetti-bg"></div>
+      <div class="modal-content levelup-content">
+        <div class="levelup-emoji">${level.emoji}</div>
+        <h2>Level Up!</h2>
+        <h3>${level.title}</h3>
+        <p>${level.description}</p>
+        <p class="modal-sub">You've reached <strong>${level.label}</strong>. You are extraordinary.</p>
+        <button class="btn-primary btn-large" id="continueBtn">Keep Going! ${level.emoji}</button>
+      </div>
+    </div>
+  `;
+    el("continueBtn").addEventListener("click", () => navigate("streak"));
+}
+function renderUrge(app) {
+    const goals = userData.goals;
+    const message = getRandomUrgeMessage();
+    let phaseIndex = 0;
+    let secondsLeft = 60;
+    let breathSeconds = BREATHING_PHASES[0].duration;
+    let breathPhase = 0;
+    app.innerHTML = `
+    <div class="page urge-page">
+      <div class="urge-header">
+        <button class="back-btn" id="urgeBack">← Back</button>
+        <h1>Breathe Through It</h1>
+        <p class="urge-subtitle">This feeling is temporary. Stay with me.</p>
+      </div>
+
+      <div class="breathing-circle-wrap">
+        <div class="breathing-circle" id="breathCircle">
+          <div class="breath-phase" id="breathPhase">Breathe In</div>
+          <div class="breath-timer" id="breathTimer">4</div>
+        </div>
+      </div>
+
+      <div class="urge-countdown">
+        <div class="countdown-ring">
+          <svg viewBox="0 0 100 100" class="countdown-svg">
+            <circle cx="50" cy="50" r="44" class="ring-bg"/>
+            <circle cx="50" cy="50" r="44" class="ring-fill" id="ringFill"/>
+          </svg>
+          <div class="countdown-num" id="countdownNum">60</div>
+        </div>
+        <p class="countdown-label">seconds until calm</p>
+      </div>
+
+      <div class="urge-message">${message}</div>
+
+      ${goals.length > 0 ? `
+        <div class="urge-goals">
+          <h3>Remember Why You Started</h3>
+          ${goals.map(g => `<div class="urge-goal-item">🎯 ${g}</div>`).join("")}
+        </div>
+      ` : ""}
+
+      <button class="btn-calm" id="urgeDone">I've Calmed Down ✓</button>
+    </div>
+  `;
+    el("urgeBack").addEventListener("click", () => navigate("streak"));
+    el("urgeDone").addEventListener("click", () => navigate("streak"));
+    // Breathing animation
+    const circleEl = el("breathCircle");
+    const phaseEl = el("breathPhase");
+    const timerEl = el("breathTimer");
+    const countdownEl = el("countdownNum");
+    const ringFill = el("ringFill");
+    const circumference = 2 * Math.PI * 44;
+    if (ringFill) {
+        ringFill.style.strokeDasharray = `${circumference}`;
+        ringFill.style.strokeDashoffset = `${circumference}`;
+    }
+    let breathSec = BREATHING_PHASES[0].duration;
+    let breathIdx = 0;
+    breathingInterval = setInterval(() => {
+        // Countdown
+        secondsLeft--;
+        countdownEl.textContent = String(secondsLeft);
+        if (ringFill) {
+            const offset = circumference * (secondsLeft / 60);
+            ringFill.style.strokeDashoffset = String(offset);
+        }
+        // Breathing
+        breathSec--;
+        timerEl.textContent = String(breathSec);
+        if (breathSec <= 0) {
+            breathIdx = (breathIdx + 1) % BREATHING_PHASES.length;
+            const phase = BREATHING_PHASES[breathIdx];
+            breathSec = phase.duration;
+            phaseEl.textContent = phase.name;
+            timerEl.textContent = String(breathSec);
+            circleEl.style.borderColor = phase.color;
+            if (breathIdx === 0)
+                circleEl.classList.add("breath-expand");
+            else if (breathIdx === 2)
+                circleEl.classList.remove("breath-expand");
+        }
+        if (secondsLeft <= 0) {
+            clearTimers();
+        }
+    }, 1000);
+}
+function renderTriggers(app) {
+    const triggers = [...userData.triggers].reverse();
+    app.innerHTML = `
+    <div class="page triggers-page">
+      <div class="page-header">
+        <h1>Trigger Board</h1>
+        <p>Understanding your triggers is the first step to defeating them.</p>
+      </div>
+
+      <div class="trigger-form card">
+        <h3>Log a Trigger</h3>
+        <div class="form-group">
+          <label>Trigger Type</label>
+          <select id="triggerType" class="form-select">
+            ${TRIGGER_TYPES.map(t => `<option value="${t}">${t}</option>`).join("")}
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Time (Hour)</label>
+          <select id="triggerHour" class="form-select">
+            ${Array.from({ length: 24 }, (_, i) => `<option value="${i}" ${i === new Date().getHours() ? "selected" : ""}>${formatHour(i)}</option>`).join("")}
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Note (optional)</label>
+          <input type="text" id="triggerNote" class="form-input" placeholder="What was happening?">
+        </div>
+        <button class="btn-primary" id="logTriggerBtn">Log Trigger ⚡</button>
+      </div>
+
+      <div class="trigger-list">
+        <h3>Recent Triggers (${triggers.length})</h3>
+        ${triggers.length === 0 ? `<div class="empty-state">No triggers logged yet. That's a good sign! 🎉</div>` : ""}
+        ${triggers.map(t => `
+          <div class="trigger-item" data-id="${t.id}">
+            <div class="trigger-info">
+              <span class="trigger-type">${t.type}</span>
+              <span class="trigger-hour">${formatHour(t.hour)}</span>
+              ${t.note ? `<span class="trigger-note">${t.note}</span>` : ""}
+            </div>
+            <button class="btn-icon delete-trigger" data-id="${t.id}">✕</button>
+          </div>
+        `).join("")}
+      </div>
+
+      ${navBar("triggers")}
+    </div>
+  `;
+    el("logTriggerBtn").addEventListener("click", () => {
+        const type = el("triggerType").value;
+        const hour = parseInt(el("triggerHour").value);
+        const note = el("triggerNote").value;
+        userData = addTrigger(userData, type, hour, note);
+        navigate("triggers");
+    });
+    document.querySelectorAll(".delete-trigger").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const id = e.currentTarget.getAttribute("data-id");
+            userData = deleteTrigger(userData, id);
+            navigate("triggers");
+        });
+    });
+    attachNavListeners();
+}
+function renderGoals(app) {
+    app.innerHTML = `
+    <div class="page goals-page">
+      <div class="page-header">
+        <h1>Goal Board</h1>
+        <p>Your goals are the reasons you fight. Keep them close.</p>
+      </div>
+
+      <div class="goal-form card">
+        <h3>Add a Goal</h3>
+        <div class="form-row">
+          <input type="text" id="goalInput" class="form-input" placeholder="e.g. Be present for my family">
+          <button class="btn-primary" id="addGoalBtn">Add 🎯</button>
+        </div>
+      </div>
+
+      <div class="goals-list">
+        ${userData.goals.length === 0 ? `
+          <div class="empty-state">
+            <p>No goals yet. Add what matters most to you. These will appear when you need them most — during urges.</p>
+          </div>
+        ` : userData.goals.map((g, i) => `
+          <div class="goal-item card" data-index="${i}">
+            <span class="goal-num">${i + 1}</span>
+            <span class="goal-text" id="goal-text-${i}">${g}</span>
+            <div class="goal-actions">
+              <button class="btn-icon edit-goal" data-index="${i}">✏️</button>
+              <button class="btn-icon danger delete-goal" data-index="${i}">✕</button>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+
+      ${navBar("goals")}
+    </div>
+  `;
+    el("addGoalBtn").addEventListener("click", () => {
+        const input = el("goalInput");
+        if (input.value.trim()) {
+            userData = addGoal(userData, input.value);
+            navigate("goals");
+        }
+    });
+    el("goalInput")?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            const input = el("goalInput");
+            if (input.value.trim()) {
+                userData = addGoal(userData, input.value);
+                navigate("goals");
+            }
+        }
+    });
+    document.querySelectorAll(".edit-goal").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const index = parseInt(e.currentTarget.getAttribute("data-index"));
+            const newText = prompt("Edit goal:", userData.goals[index]);
+            if (newText && newText.trim()) {
+                userData = editGoal(userData, index, newText);
+                navigate("goals");
+            }
+        });
+    });
+    document.querySelectorAll(".delete-goal").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const index = parseInt(e.currentTarget.getAttribute("data-index"));
+            confirmDeleteGoal(index);
+        });
+    });
+    attachNavListeners();
+}
+function confirmDeleteGoal(index) {
+    const app = el("app");
+    app.innerHTML = `
+    <div class="page modal-page">
+      <div class="modal-content">
+        <div class="modal-emoji">🎯</div>
+        <h2>Wait — Are You Sure?</h2>
+        <p>"${userData.goals[index]}"</p>
+        <p class="modal-sub">These goals represent the reasons you started this journey. Are you sure you want to delete this goal?</p>
+        <div class="modal-actions">
+          <button class="btn-danger" id="confirmDelete">Yes, Delete It</button>
+          <button class="btn-secondary" id="cancelDelete">Keep It</button>
+        </div>
+      </div>
+    </div>
+  `;
+    el("confirmDelete").addEventListener("click", () => {
+        userData = deleteGoal(userData, index);
+        navigate("goals");
+    });
+    el("cancelDelete").addEventListener("click", () => navigate("goals"));
+}
+function renderAdvice(app) {
+    const categories = [...new Set(ADVICE.map(a => a.category))];
+    app.innerHTML = `
+    <div class="page advice-page">
+      <div class="page-header">
+        <h1>Advice Board</h1>
+        <p>Wisdom to carry you through.</p>
+      </div>
+      ${categories.map(cat => `
+        <div class="advice-category">
+          <h3 class="advice-cat-title">${cat}</h3>
+          ${ADVICE.filter(a => a.category === cat).map(a => `
+            <div class="advice-card card">
+              <div class="advice-icon">${a.icon}</div>
+              <div class="advice-body">
+                <h4>${a.title}</h4>
+                <p>${a.content}</p>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      `).join("")}
+      ${navBar("advice")}
+    </div>
+  `;
+    attachNavListeners();
+}
+function renderDashboard(app) {
+    const stats = buildDashboard(userData);
+    app.innerHTML = `
+    <div class="page dashboard-page">
+      <div class="page-header">
+        <h1>Your Dashboard</h1>
+        <p>Every number here is a testimony of your strength.</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card primary">
+          <div class="stat-icon">${stats.currentLevelEmoji}</div>
+          <div class="stat-val">${stats.currentLevelLabel}</div>
+          <div class="stat-label">Current Level</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">${stats.currentDay}</div>
+          <div class="stat-label">Current Day</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">${stats.longestStreak}</div>
+          <div class="stat-label">Longest Streak</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">${stats.totalCleanDays}</div>
+          <div class="stat-label">Total Clean Days</div>
+        </div>
+        <div class="stat-card ${stats.relapseCount === 0 ? 'clean' : 'warn'}">
+          <div class="stat-val">${stats.relapseCount}</div>
+          <div class="stat-label">Relapses</div>
+        </div>
+      </div>
+
+      ${stats.topTriggers.length > 0 ? `
+        <div class="card pattern-card">
+          <h3>🔍 Trigger Patterns</h3>
+          <div class="trigger-bars">
+            ${stats.topTriggers.map((t, i) => `
+              <div class="trigger-bar-row">
+                <span class="trigger-bar-label">${t.type}</span>
+                <div class="trigger-bar-track">
+                  <div class="trigger-bar-fill" style="width: ${Math.round((t.count / stats.topTriggers[0].count) * 100)}%; animation-delay: ${i * 0.1}s"></div>
+                </div>
+                <span class="trigger-bar-count">${t.count}x</span>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      ` : ""}
+
+      ${stats.dangerousHours.length > 0 ? `
+        <div class="card pattern-card">
+          <h3>⏰ Danger Hours</h3>
+          ${stats.dangerousHours.map(h => `
+            <div class="danger-hour">
+              <span class="dh-label">${h.label}</span>
+              <span class="dh-count">${h.count} trigger${h.count > 1 ? "s" : ""}</span>
+            </div>
+          `).join("")}
+        </div>
+      ` : ""}
+
+      ${navBar("dashboard")}
+    </div>
+  `;
+    attachNavListeners();
+}
+function attachNavListeners() {
+    document.querySelectorAll("[data-nav]").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const page = e.currentTarget.getAttribute("data-nav");
+            navigate(page);
+        });
+    });
+}
+function initApp() {
+    userData = loadData();
+    render();
+}
+
+
+// ===== MAIN =====
+document.addEventListener("DOMContentLoaded", () => {
+    initApp();
+});
+
+  </script>
 </body>
 </html>
